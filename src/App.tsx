@@ -1,25 +1,44 @@
-import { useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { useSearchUser } from "./hooks/useSearchUser"
 
 function App() {
+  const [search, setSeatch] = useState('')
+  const { fetchGithubUser, loading, notFound, user } = useSearchUser();
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    setSeatch( e.target.value )
+  }
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
 
+
+    fetchGithubUser(search)
+  }
+
+
+  (() => fetchGithubUser('torvalds'))
   const [theme, setTheme] = useState('light')
 
   const changeTheme = () => {
-    setTheme(theme === 'light' ? 'dark': 'light')
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
+
+  (() => fetchGithubUser('torvalds'))
   useEffect(() => {
-    if(theme === 'dark'){
+    if (theme === 'dark') {
       document.querySelector('html')?.classList.add('dark')
-    }else {
+    } else {
       document.querySelector('html')?.classList.remove('dark')
     }
   }, [theme])
-  
+
+
   return (
+
     <div>
+      <div></div>
       <header className="flex justify-around items-center">
-        <h1 className="text-2xl font-bold">Devfinder</h1>
+        <h1 className="text-2xl font-bold dark:text-white">Devfinder</h1>
         <button onClick={changeTheme} className="flex gap-4">
           <p className="uppercase text-sm font-bold items-center text-secondaryText">dark</p>
           <img className="size-5" src="../src/assets/icon-moon.svg" alt="" />
@@ -30,43 +49,55 @@ function App() {
 
       <div className="flex max-w-[327px] shadow-2xl items-center">
         <img className="size-6" src="../src/assets/icon-search.svg" alt="" />
-        <input value='Search Github username...' type="text" />
-        <button className="w-20 bg-primary text-white font-bold rounded-lg py-3 px-4 text-center">
-          Search
-        </button>
+        <form onSubmit={handleSubmit} >
+          <label htmlFor="user"></label>
+          <input
+            className=""
+            placeholder='Search Github username...'
+            id="user"
+            name="user"
+            type="text"
+            value={search}
+            onChange={handleChange}
+
+          />
+          <input
+            className="w-20 bg-primary text-white font-bold rounded-lg py-3 px-4 text-center"
+            type="submit" />
+        </form>
+
       </div>
 
-      <div className="bg-white rounded-lg px-6 pt-8 pb-10 max-w-[327px] shadow-2xl">
+      <div className="bg-white dark:bg-softDark rounded-lg px-6 pt-8 pb-10 max-w-[327px] shadow-2xl mx-auto">
         <div>
           <img src="../src/assets/" alt="" />
           <div>
             <div>
-              <p className="font-bold text-base">The Octocat</p>
-              <p className="text-xs text-primary">@octocat</p>
+              <p className="font-bold text-base dark:text-white">The Octocat</p>
+              <p className="text-xs text-primary ">@octocat</p>
             </div>
             <div>
-              <p className="text-secondaryText text-sm">Joined 25 Jan 2011</p>
+              <p className="text-secondaryText text-sm dark:text-white">Joined 25 Jan 2011</p>
             </div>
           </div>
         </div>
-        <p className="text-sm text-secondaryText">
+        <p className="text-sm text-secondaryText dark:text-white">
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
         </p>
-        <div className="flex justify-around text-center bg-softGray rounded-lg p-4 my-6">
-          <div>
-            <p>Repos</p>
-            <p>8</p>
+        <div className="flex justify-around text-center bg-softGray rounded-lg p-4 my-6 dark:text-white dark:bg-darkPrimary">
+          <div className="">
+            <p className="text-xs text-primaryActive dark:text-white">Repos</p>
+            <p className="font-bold">8</p>
           </div>
           <div>
-            <p>followers</p>
-            <p>3938</p>
+            <p className="text-xs text-primaryActive dark:text-white">followers</p>
+            <p className="font-bold">3938</p>
           </div>
           <div>
-            <p>Following</p>
-            <p>0</p>
+            <p className="text-xs text-primaryActive dark:text-white">Following</p>
+            <p className="font-bold">0</p>
           </div>
         </div>
-
 
         <div>
           <div>
@@ -89,11 +120,6 @@ function App() {
           </div>
         </div>
       </div>
-
-
-
-
-
 
     </div>
   )
