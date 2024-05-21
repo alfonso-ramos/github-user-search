@@ -3,7 +3,7 @@ export type User = {
     login: string
     avatar_url: string,
     bio: string,
-    created_at: Date,
+    created_at: string,
     public_repos: number,
     followers: number,
     following: number,
