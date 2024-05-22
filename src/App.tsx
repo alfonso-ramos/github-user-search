@@ -78,20 +78,22 @@ function App() {
           </div>
         </form>
 
-        <div className="bg-white dark:bg-softDark rounded-lg px-6 pt-8 pb-10 min-w-[327px] max-w-[730px] shadow-2xl mx-6 md:mx-auto">
+        <div className="bg-white dark:bg-softDark rounded-lg px-6 pt-8 pb-10 min-w-[327px] max-w-[730px] shadow-2xl mx-6 md:mx-auto xl:px-12">
           <div className="flex gap-5 mb-8 items-center ">
             {
               loading ? <Spinner /> :
                 <>
                   <img className="size-[70px] rounded-full md:size-[117px]" src={user.avatar_url} alt="" />
                   <div>
-                    <div>
-                      <p className="font-bold text-base dark:text-white">{user.name}</p>
-                      <p className="text-xs text-primary ">@{user.login}</p>
+                    <div className="xl:flex xl:justify-between">
+                      <div>
+                        <p className="font-bold text-base dark:text-white md:text-2xl md:mb-1">{user.name}</p>
+                        <p className="text-xs text-primary md:text-base mb-2 md:mb-1">@{user.login}</p>
+                      </div>
+                      <p className="text-secondaryText text-sm dark:text-white mb-2">{formatJoinedDate(user.created_at)}</p>
                     </div>
                     <div>
-                      <p className="text-secondaryText text-sm dark:text-white">{formatJoinedDate(user.created_at)}</p>
-                      <p className="text-sm text-secondaryText dark:text-white">
+                      <p className="text-sm text-secondaryText dark:text-white md:mt-3">
                         {user.bio ? user.bio : "No bio yet"}
                       </p>
                     </div>
@@ -99,21 +101,22 @@ function App() {
                 </>
             }
           </div>
-          <div className="flex justify-around text-center bg-softGray rounded-lg p-4 my-6 dark:text-white dark:bg-darkPrimary">
+          <div className="flex justify-around md:justify-center md:gap-32 md:pl-8 text-center bg-softGray rounded-lg p-4 my-6 dark:text-white dark:bg-darkPrimary xl:w-[480px] xl:ml-36 xl
+          md:text-left">
             {
               loading ? < Spinner /> :
                 <>
                   <div>
-                    <p className="text-xs text-primaryActive dark:text-white">Repos</p>
-                    <p className="font-bold">{user.public_repos}</p>
+                    <p className="text-xs text-primaryActive dark:text-secondaryText">Repos</p>
+                    <p className="font-bold md:text-2xl">{user.public_repos}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-primaryActive dark:text-white">followers</p>
-                    <p className="font-bold">{user.followers}</p>
+                    <p className="text-xs text-primaryActive dark:text-secondaryText">followers</p>
+                    <p className="font-bold md:text-2xl">{user.followers}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-primaryActive dark:text-white">Following</p>
-                    <p className="font-bold">{user.following}</p>
+                    <p className="text-xs text-primaryActive dark:text-secondaryText">Following</p>
+                    <p className="font-bold md:text-2xl">{user.following}</p>
                   </div>
                 </>
             }
@@ -124,7 +127,7 @@ function App() {
             loading ? <Spinner /> :
 
               <>
-                <div className="md:grid md:grid-cols-2">
+                <div className="md:grid md:grid-cols-2 xl:w-[480px] xl:ml-36">
                   <div className="flex gap-5 mb-4">
                     <svg className={user.location === null ? "fill-secondaryText" : "fill-primaryActive"} height="20" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M12.797 3.425C11.584 1.33 9.427.05 7.03.002a7.483 7.483 0 00-.308 0C4.325.05 2.17 1.33.955 3.425a6.963 6.963 0 00-.09 6.88l4.959 9.077.007.012c.218.38.609.606 1.045.606.437 0 .828-.226 1.046-.606l.007-.012 4.96-9.077a6.963 6.963 0 00-.092-6.88zm-5.92 5.638c-1.552 0-2.813-1.262-2.813-2.813s1.261-2.812 2.812-2.812S9.69 4.699 9.69 6.25 8.427 9.063 6.876 9.063z" fill="#4b6a9b" /></svg>
                     <p className={user.location === null ? "text-secondaryText" : "text-primaryActive"}>
