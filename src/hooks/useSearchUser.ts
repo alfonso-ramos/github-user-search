@@ -23,7 +23,7 @@ import { User } from '../types';
 const initialState = {
     name: "The Octocat",
     login: "octocat",
-    avatar_url: "src/assets/octocat.png",
+    avatar_url: "./assets/octocat.png",
     bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.",
     created_at: "2021-06-26T00:05:46Z",
     public_repos: 0,
@@ -54,19 +54,16 @@ export const useSearchUser = () => {
                 }
             })
 
-            console.log(data)
-
             // const result = GithubUserSchema.safeParse(data)
             if(data) {
                 setUser(data)
-                console.log("Hay datos")
                 setNotFound(false)
             } else {
                 setNotFound(true)
             }
         } catch (error) {
             setNotFound(true)
-            console.error(error)
+            // console.error(error)
         } finally {
             setLoading(false)
         }
