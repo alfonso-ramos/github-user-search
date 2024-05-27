@@ -20,7 +20,7 @@ export default function Header() {
                 <h1 className="text-2xl font-bold dark:text-white">Devfinder</h1>
                 <button onClick={changeTheme} className="flex gap-4">
                     <p className="uppercase text-sm font-bold items-center text-secondaryText dark:text-white">{theme === 'dark' ? 'light' : 'dark'}</p>
-                    <img className="size-5" src={theme === 'dark' ? "../src/assets/icon-sun.svg" : "../src/assets/icon-moon.svg"} alt="" />
+                    <img className="size-5" src={theme === 'dark' ? "/assets/icon-sun.svg" : "/assets/icon-moon.svg"} alt="" />
                 </button>
             </header>
         </>

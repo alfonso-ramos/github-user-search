@@ -21,7 +21,7 @@ export default function InputSearch({notFound, fetchGithubUser} : InputSearchPro
     return (
         <form onSubmit={handleSubmit} className="text-sm flex flex-row justify-between gap-2 px-4 mx-6 min-w-[327px] max-w-[730px] h-16 shadow-2xl items-center rounded-lg mb-4 md:mx-auto dark:bg-softDark">
             <div className="flex gap-4 items-center">
-                <img className="size-6" src="../src/assets/icon-search.svg" alt="" />
+                <img className="size-6" src="/assets/icon-search.svg" alt="" />
                 <label htmlFor="user">
                     <input
                         className="dark:bg-softDark dark:text-softWhite w-[184px] overflow-auto"
